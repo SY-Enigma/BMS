@@ -17,6 +17,7 @@ import java.io.IOException;
  **/
 @WebServlet(name = "LoginServlet",urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
+    private  LoginService loginService = new LoginService();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
      req.setCharacterEncoding("utf-8");
@@ -24,9 +25,9 @@ public class LoginServlet extends HttpServlet {
       String username = req.getParameter("username");
       String password = req.getParameter("password");
 
-      String result = LoginService.login(username,password,req.getSession());
-      if ("1".equals(result)){
-          resp.sendRedirect("/main.jsp");
+      String result = loginService.login(username,password,req.getSession());
+      if ("登录成功".equals(result)){
+          resp.sendRedirect("./main.jsp");
       }else {
           req.getRequestDispatcher("/index.jsp?message=" + result).forward(req, resp);
       }

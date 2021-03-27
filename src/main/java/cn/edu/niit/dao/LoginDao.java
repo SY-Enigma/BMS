@@ -13,19 +13,13 @@ import java.sql.SQLException;
  * @Date 2021/3/23
  **/
 public class LoginDao {
-    public static User selectOne(String username) {
+    public  User selectOne(String username) {
         User user = null;
         try (ResultSet resultSet =
-                     JDBCUtil.getInstance().executeQueryRS("select " +
-                                     "* " +
-                                     "from " +
-                                     "borrow_card where username=?",
-                             new Object[]{username})) {
+                     JDBCUtil.getInstance().executeQueryRS("select " + "* " + "from " + "borrow_card where username=?", new Object[]{username})) {
 
             while (resultSet.next()) {
-                user = new User(resultSet.getString("username"),
-                        resultSet.getString("password"),
-                        resultSet.getString("reader"));
+                user = new User(resultSet.getString("username"),resultSet.getString("password"), resultSet.getString("reader"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

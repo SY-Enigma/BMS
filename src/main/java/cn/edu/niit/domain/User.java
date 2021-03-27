@@ -11,7 +11,9 @@ public class User {
     private  String password;
     private  String  reader;
 
+    public User() {
 
+    }
 
     public User(String username, String password, String reader) {
         this.username = username;
