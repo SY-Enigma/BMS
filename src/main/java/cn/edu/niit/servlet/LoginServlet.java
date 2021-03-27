@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
 
       String result = loginService.login(username,password,req.getSession());
       if ("登录成功".equals(result)){
-          resp.sendRedirect("./main.jsp");
+          resp.sendRedirect("/main.jsp");
       }else {
           req.getRequestDispatcher("/index.jsp?message=" + result).forward(req, resp);
       }

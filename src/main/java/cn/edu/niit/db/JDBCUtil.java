@@ -24,7 +24,9 @@ public class JDBCUtil {
   private static  String password = "123";
   private static JDBCUtil instance = null;
 
-  private CallableStatement callableStatement = null;//创建CallableStatement对象
+  //创建CallableStatement对象
+
+  private CallableStatement callableStatement = null;
   private Connection conn = null;
   private PreparedStatement pst = null;
   private ResultSet rst = null;

@@ -20,7 +20,8 @@ public class LoginService {
             return  "用户不存在";
         }else {
             if (password.equals(user.getPassword())){
-
+                session.setAttribute("user", user);
+                session.setAttribute("isLogin", true);
                 return "登录成功";
             }else {
                 return "密码错误";

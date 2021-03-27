@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>layui.form小例子</title>
+    <title>图书管理系统</title>
     <link rel="stylesheet" href="./layui/css/layui.css" media="all">
     <style>
         html, body {
