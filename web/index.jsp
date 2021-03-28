@@ -80,7 +80,7 @@
                     <button class="layui-btn" lay-submit
                             lay-filter="*">登录
                     </button>
-                    <button class="layui-btn layui-btn-primary">注册
+                    <button class="layui-btn layui-btn-primary" ><a href="register.jsp">注册</a>
                     </button>
                 </div>
             </div>
