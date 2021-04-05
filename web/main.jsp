@@ -33,8 +33,8 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">其它系统</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
-                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="mail.jsp">邮件管理</a></dd>
+                    <dd><a href="information.jsp">消息管理</a></dd>
                     <dd><a href="">授权管理</a></dd>
                 </dl>
             </li>
@@ -48,7 +48,7 @@
                     %>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="personalInfo.jsp">基本资料</a></dd>
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>

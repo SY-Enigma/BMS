@@ -1,5 +1,7 @@
 package cn.edu.niit.servlet;
 
+import cn.edu.niit.dao.LoginDao;
+import cn.edu.niit.domain.User;
 import cn.edu.niit.service.LoginService;
 
 import javax.servlet.ServletException;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @ClassName LoginServlet
@@ -32,6 +35,5 @@ public class LoginServlet extends HttpServlet {
           req.getRequestDispatcher("/index.jsp?message=" + result).forward(req, resp);
       }
     }
-
 
 }
