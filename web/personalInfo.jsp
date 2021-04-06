@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/layui/css/layui.css" media="all">
 </head>
 <body>
+<jsp:useBean id="user" class="cn.edu.niit.domain.User" scope="session" />
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
@@ -22,7 +23,7 @@
                         <div class="layui-col-md2"
                              style="display: flex;justify-content: flex-end;">
                             <img class="layui-header"
-                                 src="/images/01.png"/>
+                                 src="<jsp:getProperty name="user" property="header"/>" />
                         </div>
                         <div class="layui-col-md10">
                             <div class="layui-form" lay-filter="">
@@ -31,7 +32,7 @@
                                     <div class="layui-input-inline">
                                         <input type="text"
                                                name="username"
-                                               value="xianxin"
+                                               value="<jsp:getProperty name="user" property="username"/>"
                                                readonly
                                                class="layui-input">
                                     </div>
@@ -44,7 +45,7 @@
                                     <div class="layui-input-inline">
                                         <input type="text"
                                                name="nickname"
-                                               value="贤心"
+                                               value="<jsp:getProperty name="user" property="reader"/>"
                                                lay-verify="nickname"
                                                autocomplete="off"
                                                placeholder="请输入昵称"
@@ -55,10 +56,10 @@
                                     <label class="layui-form-label">性别</label>
                                     <div class="layui-input-block">
                                         <input type="radio" name="sex"
-                                               value="男" title="男">
+                                               value="男" title="男" <%= user.isSex() ? "checked" : ""%>/>
                                         <input type="radio" name="sex"
                                                value="女" title="女"
-                                               checked>
+                                            <%= user.isSex() ? "" : "checked"%>>
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
@@ -68,7 +69,7 @@
                                                lay-verify="required"
                                                id="LAY_avatarSrc"
                                                placeholder="图片地址"
-                                               value="http://cdn.layui.com/avatar/168.jpg"
+                                               value="<jsp:getProperty name="user" property="header"/>"
                                                class="layui-input">
                                     </div>
                                     <div class="layui-input-inline layui-btn-container"
@@ -89,7 +90,7 @@
                                     <div class="layui-input-inline">
                                         <input type="text"
                                                name="cellphone"
-                                               value=""
+                                               value="<jsp:getProperty name="user" property="cellPhone"/>"
                                                lay-verify="phone"
                                                autocomplete="off"
                                                class="layui-input">
@@ -99,7 +100,8 @@
                                     <label class="layui-form-label">邮箱</label>
                                     <div class="layui-input-inline">
                                         <input type="text"
-                                               name="email" value=""
+                                               name="email"
+                                               value="<jsp:getProperty name="user" property="cellPhone"/>"
                                                lay-verify="email"
                                                autocomplete="off"
                                                class="layui-input">
@@ -110,7 +112,10 @@
                                     <div class="layui-input-block">
                                             <textarea name="remarks"
                                                       placeholder="请输入内容"
-                                                      class="layui-textarea"></textarea>
+                                                      class="layui-textarea">
+                                                <jsp:getProperty name="user" property="describe"/>
+                                            </textarea>
+
                                     </div>
                                 </div>
                                 <div class="layui-form-item">

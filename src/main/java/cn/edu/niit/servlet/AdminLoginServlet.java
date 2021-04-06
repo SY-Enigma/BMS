@@ -1,6 +1,6 @@
 package cn.edu.niit.servlet;
 
-import cn.edu.niit.service.LoginService;
+import cn.edu.niit.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +18,7 @@ import java.net.URLEncoder;
  **/
 @WebServlet(name = "AdminLoginServlet", urlPatterns = "/admin/login")
 public class AdminLoginServlet extends HttpServlet {
-    private LoginService loginService = new LoginService();
+    private UserService userService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest req,
@@ -33,7 +33,7 @@ public class AdminLoginServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        String result = loginService.adminLogin(username, password,
+        String result = userService.adminLogin(username, password,
                 req.getSession());
         if ("登录成功".equals(result)) {
             resp.sendRedirect("admin.jsp");

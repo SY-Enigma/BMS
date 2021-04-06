@@ -1,26 +1,24 @@
 package cn.edu.niit.service;
 
-import cn.edu.niit.dao.LoginDao;
+import cn.edu.niit.dao.UserDao;
 import cn.edu.niit.domain.Admin;
 import cn.edu.niit.domain.User;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.List;
+import java.sql.SQLException;
 
 /**
- * @ClassName LoginService
+ * @ClassName UserService
  * @Description TODO
  * @Author SY
  * @Date 2021/3/23
  **/
-public class LoginService {
+public class UserService {
 
-    private LoginDao  loginDao= new LoginDao();
+    private UserDao userDao = new UserDao();
 
     public  String login(String username, String password, HttpSession session) {
-        User user = loginDao.selectOne(username);
+        User user = userDao.selectOne(username);
         if (user == null){
             return  "用户不存在";
         }else {
@@ -34,24 +32,11 @@ public class LoginService {
         }
     }
 
-//  public  String register(String username, String password, HttpSession session){
-//        User user = loginDao.selectOne(username);
-//        if (user == null){
-//            return "用户不存在";
-//        }else{
-//            if (password.equals(user.getPassword() == null)){
-//                 return "注册成功";
-//            }else
-//            {
-//                return "注册失败";
-//            }
-//
-//        }
-//  }
+
 
 
     public String adminLogin(String username, String password, HttpSession session) {
-        Admin admin = loginDao.selectOne(username, password);
+        Admin admin = userDao.selectOne(username, password);
         if (admin == null) {
             return "用户不存在";
         } else {
@@ -62,6 +47,15 @@ public class LoginService {
             } else {
                 return "密码错误";
             }
+        }
+    }
+    public String  register(User register) throws SQLException {
+        String result=String.valueOf(userDao.register(register));
+
+        if (result.equals("0")){
+            return "注册失败";
+        }else {
+            return "注册成功";
         }
     }
 }

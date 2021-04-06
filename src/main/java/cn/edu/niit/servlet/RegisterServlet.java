@@ -1,8 +1,8 @@
 package cn.edu.niit.servlet;
 
-import cn.edu.niit.dao.LoginDao;
+import cn.edu.niit.dao.UserDao;
 import cn.edu.niit.domain.User;
-import cn.edu.niit.service.RegisterService;
+import cn.edu.niit.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,7 +33,7 @@ public class RegisterServlet extends HttpServlet {
 
 
         User register = null;
-        RegisterService registerService = new RegisterService();
+        UserService registerService = new UserService();
         String result = "注册失败";
         //1【调用请求对象】读取【请求头】参数信息，得到用户注册信息
         String userName, password, reader;
@@ -41,11 +41,11 @@ public class RegisterServlet extends HttpServlet {
         password = req.getParameter("password");
         reader = req.getParameter("reader");
         register = new User(userName, password, reader);
-        //2 调用userService——>userDao
         // 先查询用户是否存在
+        //2 调用userService——>userDao
 
-        LoginDao loginDao = new LoginDao();
-        User byName = loginDao.selectOne(register.getUsername());
+        UserDao userDao = new UserDao();
+        User byName = userDao.selectOne(register.getUsername());
         if (byName != null) {
             result = "用户已经存在";
         } else {

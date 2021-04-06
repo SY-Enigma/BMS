@@ -33,7 +33,7 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">其它系统</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="mail.jsp">邮件管理</a></dd>
+                    <dd><a href="email.jsp">邮件管理</a></dd>
                     <dd><a href="information.jsp">消息管理</a></dd>
                     <dd><a href="">授权管理</a></dd>
                 </dl>
