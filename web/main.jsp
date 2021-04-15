@@ -1,4 +1,3 @@
-
 <%@ page import="cn.edu.niit.domain.User" %><%--
   Created by IntelliJ IDEA.
   User: 17974
@@ -13,7 +12,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>layout 后台大布局 - Layui</title>
+    <title>用户界面</title>
     <link rel="stylesheet" href="/layui/css/layui.css" />
 </head>
 <body class="layui-layout-body">
@@ -81,7 +80,7 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;">读者服务</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">个人信息</a></dd>
+                        <dd><a href="personalInfo.jsp;">个人信息</a></dd>
                         <dd><a href="javascript:;">收藏列表</a></dd>
                     </dl>
                 </li>

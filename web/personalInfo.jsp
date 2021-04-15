@@ -1,5 +1,5 @@
 <%--
-  Created by IntelliJ IDEA.
+    Created by IntelliJ IDEA.
   User: 17974
   Date: 2021/4/5
   Time: 21:48
@@ -145,7 +145,6 @@
     layui.use(['form', 'upload'], function () {
         var form = layui.form;
         var upload = layui.upload;
-
         //执行实例
         var uploadInst = upload.render({
             elem: '#LAY_avatarUpload' //绑定元素
@@ -157,8 +156,6 @@
                 //请求异常回调
             }
         });
-
-
         //各种基于事件的操作，下面会有进一步介绍
     });
 </script>
