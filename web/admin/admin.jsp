@@ -29,22 +29,20 @@
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="images/01.png"
+                    <img src="../images/01.png"
                          class="layui-nav-img">
                     管理员
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;" name="borrow"
                            title="个人信息"
-                           content="./personalInfo.jsp" id="4">个人信息
+                           content="./personalInfo.jsp" id="3">个人信息
                     </a></dd>
-                    <dd><a href="javascript:;" name="borrow"
-                           title="系统设置"
-                           content="./searchBooks.jsp" id="1">系统设置
+                    <dd><a href="javascript:;" name="borrow" title="系统设置" content="./searchBooks.jsp" id="1">系统设置
                     </a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="index.jsp">注销</a></li>
+            <li class="layui-nav-item"><a href="../index.jsp">注销</a></li>
         </ul>
     </div>
 
@@ -53,45 +51,37 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a href="javascript:;">图书服务</a>
+                    <a href="javascript:;">图书管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" name="borrow"
-                               title="查询图书"
-                               content="./searchBooks.jsp" id="2"
-                        >查询图书
+                               title="所有图书"
+                               content="./Books.jsp" id="2"
+                        >所有图书
                         </a></dd>
-                        <dd><a href="javascript:;" name="borrow"
-                               title="借阅历史"
-                               content="./borrowHistory.jsp" id="3">
-                            借阅历史</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">读者服务</a>
+                    <a href="javascript:;">用户管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" name="borrow"
                                title="个人信息"
-                               content="./personalInfo.jsp" id="4">
+                               content="./personalInfo.jsp" id="3">
                             个人信息</a></dd>
                         <dd><a href="javascript:;" name="borrow"
-                               title="图书收藏"
-                               content="./favoriteList.jsp" id="5">
-                            图书收藏</a></dd>
-                        <dd><a href="javascript:;" name="borrow"
-                               title="在借图书"
-                               content="./borrowList.jsp" id="6">
-                            在借图书</a></dd>
+                               title="用户管理"
+                               content="./Users.jsp" id="4">
+                            用户管理</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;" name="borrow"
                        title="留言板"
-                       content="./messageBoard.jsp" id="7">留言板</a>
+                       content="./messageBoard.jsp" id="5">留言板</a>
                 </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;" name="borrow"
                        title="通知中心"
-                       content="./notification.jsp" id="8">通知中心</a>
+                       content="./notification.jsp" id="6">通知中心</a>
                 </li>
             </ul>
         </div>
@@ -117,7 +107,7 @@
         © 软件工程专业
     </div>
 </div>
-<script src="./layui/layui.js"></script>
+<script src="../layui/layui.js"></script>
 <script>
     //JavaScript代码区域
     layui.use(['element'], function () {

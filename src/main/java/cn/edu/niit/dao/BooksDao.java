@@ -36,9 +36,7 @@ public class BooksDao {
     }
     public int selectAllCount() {
         String sql = "select count(*) as num from books";
-        try (final ResultSet rs =
-                     JDBCUtil.getInstance().executeQueryRS(sql,
-                             new Object[]{})) {
+        try (final ResultSet rs = JDBCUtil.getInstance().executeQueryRS(sql, new Object[]{})) {
             while (rs.next()) {
                 return rs.getInt("num");
             }
@@ -48,4 +46,5 @@ public class BooksDao {
         }
         return 0;
     }
+
 }

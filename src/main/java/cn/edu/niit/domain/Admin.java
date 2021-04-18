@@ -14,7 +14,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Admin {
+
     private  String username;
     private  String  password;
+    private  String  reader;
+    private  String  header;
+    private  String cellPhone;
+    private  boolean sex;
 
+
+    public Admin(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }

@@ -1,17 +1,19 @@
-
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="cn.edu.niit.domain.Books" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 17974
-  Date: 2021/3/30
-  Time: 15:45
+  Date: 2021/4/18
+  Time: 14:29
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>图书</title>
+    <title>所有图书</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -33,7 +35,10 @@
     </style>
 </head>
 <body>
-
+<div>
+    <button class="layui-btn" data-type="getCheckLength"
+            style="margin-left: 20px;">新增图书</button>
+</div>
 <div class="layui-nav-item demoTable"
      style="display: flex;justify-content: flex-end;">
     <input type="text" class="layui-input"
@@ -43,7 +48,6 @@
             style="margin-left: 20px;">搜索
     </button>
 </div>
-
 <div class="layui-form" id="content">
     <table class="layui-table" style="table-layout:fixed">
         <colgroup>
@@ -73,7 +77,9 @@
                 </td>
                 <td>
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-                    <a class="layui-btn layui-btn-xs" lay-event="edit">借阅</a>
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">修改</a>
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">删除</a>
+
                 </td>
             </tr>
         </c:forEach>
@@ -125,7 +131,7 @@
                         pageNum: page,
                         pageSize: size
                     }),
-                        contentType: "application/json;charset=UTF-8",
+                    contentType: "application/json;charset=UTF-8",
                     success: function (data) {
                         $('#content').load(location.href + " #content");
                         //count从Servlet中得到

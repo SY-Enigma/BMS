@@ -48,7 +48,7 @@
                     </a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">退出</a></li>
+            <li class="layui-nav-item"><a href="index.jsp">注销</a></li>
         </ul>
     </div>
 

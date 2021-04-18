@@ -56,7 +56,12 @@ public class UserDao extends JDBCUtil {
 
             while (resultSet.next()) {
                 admin = new Admin(resultSet.getString("username"),
-                        resultSet.getString("password"));
+                        resultSet.getString("password"),
+                        resultSet.getString("reader"),
+                        resultSet.getString("header"),
+                        resultSet.getString("cellPhone"),
+                        resultSet.getBoolean("sex")
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();

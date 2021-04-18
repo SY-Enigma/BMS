@@ -21,22 +21,19 @@ public class AdminLoginServlet extends HttpServlet {
     private UserService userService = new UserService();
 
     @Override
-    protected void doGet(HttpServletRequest req,
-                         HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.doPost(req, resp);
     }
 
         @Override
-    protected void doPost(HttpServletRequest req,
-                          HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        String result = userService.adminLogin(username, password,
-                req.getSession());
+        String result = userService.adminLogin(username, password, req.getSession());
         if ("登录成功".equals(result)) {
-            resp.sendRedirect("admin.jsp");
+            resp.sendRedirect("/admin/admin.jsp");
         } else {
             req.getRequestDispatcher("/index.jsp?message=" + URLEncoder.encode(result, "utf-8")).forward(req, resp);
         }
