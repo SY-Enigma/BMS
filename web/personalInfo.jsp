@@ -6,13 +6,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
+
 <head>
-    <title>个人信息设置</title>
+    <meta charset="utf-8">
+    <title>设置我的资料</title>
     <link rel="stylesheet" href="/layui/css/layui.css" media="all">
 </head>
+
 <body>
-<jsp:useBean id="user" class="cn.edu.niit.domain.User" scope="session" />
+<jsp:useBean id="user" class="cn.edu.niit.domain.User" scope="session"/>
+
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
@@ -23,7 +28,7 @@
                         <div class="layui-col-md2"
                              style="display: flex;justify-content: flex-end;">
                             <img class="layui-header"
-                                 src="<jsp:getProperty name="user" property="header"/>" />
+                                 src="<jsp:getProperty name="user" property="header"/>"/>
                         </div>
                         <div class="layui-col-md10">
                             <div class="layui-form" lay-filter="">
@@ -56,10 +61,12 @@
                                     <label class="layui-form-label">性别</label>
                                     <div class="layui-input-block">
                                         <input type="radio" name="sex"
-                                               value="男" title="男" <%= user.isSex() ? "checked" : ""%>/>
+                                               value="男"
+                                               title="男"
+                                                <%=user.isSex() ? "checked" : ""%>/>
                                         <input type="radio" name="sex"
-                                               value="女" title="女"
-                                            <%= user.isSex() ? "" : "checked"%>>
+                                               value="女"
+                                               title="女" <%=user.isSex() ? "" : "checked"%>/>
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
@@ -101,7 +108,7 @@
                                     <div class="layui-input-inline">
                                         <input type="text"
                                                name="email"
-                                               value="<jsp:getProperty name="user" property="cellPhone"/>"
+                                               value="<jsp:getProperty name="user" property="email"/>"
                                                lay-verify="email"
                                                autocomplete="off"
                                                class="layui-input">
@@ -110,12 +117,12 @@
                                 <div class="layui-form-item layui-form-text">
                                     <label class="layui-form-label">备注</label>
                                     <div class="layui-input-block">
-                                            <textarea name="remarks"
-                                                      placeholder="请输入内容"
-                                                      class="layui-textarea">
-                                                <jsp:getProperty name="user" property="describe"/>
-                                            </textarea>
-
+										<textarea name="remarks"
+                                                  placeholder="请输入内容"
+                                                  class="layui-textarea"><jsp:getProperty
+                                                name="user"
+                                                property="describe"/>
+										</textarea>
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
@@ -145,19 +152,23 @@
     layui.use(['form', 'upload'], function () {
         var form = layui.form;
         var upload = layui.upload;
+
         //执行实例
         var uploadInst = upload.render({
             elem: '#LAY_avatarUpload' //绑定元素
-            ,url: '/upload/' //上传接口
-            ,done: function(res){
+            , url: '/upload/' //上传接口
+            , done: function (res) {
                 //上传完毕回调
             }
-            ,error: function(){
+            , error: function () {
                 //请求异常回调
             }
         });
+
+
         //各种基于事件的操作，下面会有进一步介绍
     });
 </script>
 </body>
+
 </html>

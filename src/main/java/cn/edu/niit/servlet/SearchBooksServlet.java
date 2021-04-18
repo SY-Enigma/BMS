@@ -21,7 +21,7 @@ import java.util.List;
  * @Author SY
  * @Date 2021/4/13
  **/
-//@WebServlet(name = "SearchBooksServlet", urlPatterns = "/book/search")
+@WebServlet(name = "SearchBooksServlet", urlPatterns = "/book/search")
 public class SearchBooksServlet extends HttpServlet {
     private BooksService booksService = new BooksService();
 

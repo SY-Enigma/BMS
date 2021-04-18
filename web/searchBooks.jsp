@@ -1,3 +1,6 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="cn.edu.niit.domain.Books" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -9,8 +12,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Layui</title>
+    <meta charset="UTF-8">
+    <title>图书</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -62,8 +65,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="book" items="${sessionScope.books}"
-                   varStatus="status">
+        <c:forEach var="book" items="${sessionScope.books}" varStatus="status">
             <tr>
                 <td>${book.name}</td>
                 <td>${book.author}</td>
@@ -72,10 +74,8 @@
                     <div class="wrap-div">${book.description}</div>
                 </td>
                 <td>
-                    <a class="layui-btn layui-btn-primary layui-btn-xs"
-                       lay-event="detail">查看</a>
-                    <a class="layui-btn layui-btn-xs"
-                       lay-event="edit">借阅</a>
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">借阅</a>
                 </td>
             </tr>
         </c:forEach>
@@ -83,9 +83,9 @@
     </table>
 </div>
 
-<div id="page" style="display: flex;justify-content: center;"></div>
+<div id="page" style="display: flex;justify-content: center;"  ></div>
 
-<script src="./layui/layui.js" charset="utf-8"></script>
+<script src="./layui/layui.js" charset="UTF-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
 <script>
     layui.use(['laypage', 'layer'], function () {
@@ -98,12 +98,14 @@
                 //进入页面先加载数据
                 getContent(1, limit);
                 //得到数量count后，渲染表格
+
                 laypage.render({
                     elem: 'page',
                     count: count,
                     curr: page,
                     limits: [5, 10, 15, 20],
                     limit: limit,
+                    theme: '#1E9FFF',
                     layout: ['count', 'prev', 'page', 'next', 'limit'],
                     jump: function (obj, first) {
                         if (!first) {
@@ -125,7 +127,7 @@
                         pageNum: page,
                         pageSize: size
                     }),
-                    contentType: "application/json;charset=utf-8",
+                        contentType: "application/json;charset=UTF-8",
                     success: function (data) {
                         $('#content').load(location.href + " #content");
                         //count从Servlet中得到

@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 
 public class Books {
-    private  String mane;
+    private  String name;
     private  String author;
     private  String  sort;
     private  String description;
