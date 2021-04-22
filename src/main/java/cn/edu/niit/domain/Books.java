@@ -15,10 +15,20 @@ import lombok.NoArgsConstructor;
 @Data
 
 public class Books {
-    private  String name;
-    private  String author;
-    private  String  sort;
-    private  String description;
+    private String id;
+    private String name;
+    private String author;
+    private String sort;
+    private String description;
+    private boolean store;
 
+    public Books(String id, String name, String author, String sort,
+                String description) {
+        this.id = id;
+        this.name = name;
+        this.author = author;
+        this.sort = sort;
+        this.description = description;
+    }
 
 }

@@ -21,7 +21,7 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
      req.setCharacterEncoding("utf-8");
-     resp.setCharacterEncoding("utf-8");
+        resp.setCharacterEncoding("utf-8");
       String username = req.getParameter("username");
       String password = req.getParameter("password");
 

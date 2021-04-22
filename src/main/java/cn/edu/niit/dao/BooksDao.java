@@ -7,6 +7,7 @@ import java.awt.print.Book;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,10 +23,12 @@ public class BooksDao {
         try(ResultSet rs = JDBCUtil.getInstance().executeQueryRS(sql,
                 new Object[]{(pageNum - 1) * pageSize, pageSize})) {
             while (rs.next()){
-                Books book = new Books(rs.getString("name"),
+                Books book = new Books(rs.getString("id"),
+                        rs.getString("name"),
                         rs.getString("author"),
                         rs.getString("sort"),
-                        rs.getString("description"));
+                        rs.getString("description"),
+                        rs.getBoolean("store"));
                 books.add(book);
             }
 
@@ -34,6 +37,7 @@ public class BooksDao {
         }
         return books;
     }
+
     public int selectAllCount() {
         String sql = "select count(*) as num from books";
         try (final ResultSet rs = JDBCUtil.getInstance().executeQueryRS(sql, new Object[]{})) {
@@ -45,6 +49,36 @@ public class BooksDao {
             return 0;
         }
         return 0;
+    }
+    public boolean selectStore(String username, String bookId) {
+        String sql1 = "select EXISTS( SELECT 1 from borrow_books " +
+                "where book_id=? and card_id=?) as store";
+        try (ResultSet rs =
+                     JDBCUtil.getInstance().executeQueryRS(sql1,
+                             new Object[]{
+                                     bookId, username
+                             });) {
+
+            while (rs.next()) {
+                return rs.getBoolean("store");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public int insertStoreBook(String username, String bookId) {
+        String sql = "insert into borrow_books(book_id, card_id, " +
+                "borrow_date) values(?,?,?)";
+        int result = JDBCUtil.getInstance().executeUpdate(sql,
+                new Object[]{
+                        bookId, username,
+                        new Date(System.currentTimeMillis())
+                });
+        return result;
     }
 
 }

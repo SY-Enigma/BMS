@@ -18,8 +18,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="./layui/css/layui.css"
-          media="all">
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
     <style>
         .wrap-div {
@@ -44,9 +43,7 @@
     <input type="text" class="layui-input"
            style="padding: 0;display: inline;width: 300px;"
            placeholder="请输入搜索信息..."/>
-    <button class="layui-btn" data-type="getCheckLength"
-            style="margin-left: 20px;">搜索
-    </button>
+    <button class="layui-btn" data-type="getCheckLength" style="margin-left: 20px;">搜索</button>
 </div>
 <div class="layui-form" id="content">
     <table class="layui-table" style="table-layout:fixed">
@@ -54,7 +51,7 @@
             <col width="150">
             <col width="150">
             <col width="200">
-            <col>
+            <col width="100">
             <col width="180">
         </colgroup>
         <thead>
@@ -67,13 +64,13 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="book" items="${sessionScope.books}" varStatus="status">
+        <c:forEach var="books" items="${sessionScope.books}" varStatus="status">
             <tr>
-                <td>${book.name}</td>
-                <td>${book.author}</td>
-                <td>${book.sort}</td>
+                <td>${books.name}</td>
+                <td>${books.author}</td>
+                <td>${books.sort}</td>
                 <td class="wrap-td">
-                    <div class="wrap-div">${book.description}</div>
+                    <div class="wrap-div">${books.description}</div>
                 </td>
                 <td>
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
@@ -89,7 +86,7 @@
 
 <div id="page" style="display: flex;justify-content: center;"  ></div>
 
-<script src="./layui/layui.js" charset="UTF-8"></script>
+<script src="/layui/layui.js" charset="UTF-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
 <script>
     layui.use(['laypage', 'layer'], function () {

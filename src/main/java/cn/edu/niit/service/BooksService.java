@@ -20,4 +20,16 @@ public class BooksService {
     public  int countNum(){
         return booksDao.selectAllCount();
     }
+    public boolean isStore(String username, String bookId) {
+        return booksDao.selectStore(username, bookId);
+    }
+
+    public String storeBook(String username, String bookId) {
+        int result = booksDao.insertStoreBook(username, bookId);
+        if (result > 0) {
+            return "借阅成功";
+        } else {
+            return "借阅失败";
+        }
+    }
 }

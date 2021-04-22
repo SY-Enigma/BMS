@@ -23,21 +23,20 @@
 </head>
 <body class="layui-layout-body">
 
-<%
-    User user = (User) request.getSession().getAttribute("user");
-%>
-
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo" style="font-size: 25px">图书馆</div>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
-                <a href="javascript:;">
-                    <img src="<%=user.getHeader()%>"
+                <a href="javascript:;" id="info">
+                    <img id="head" src="${sessionScope.user.header}"
                          class="layui-nav-img">
-                    <%=user.getReader()%>
+                    <span
+                            id="reader">${sessionScope.user.reader}</span>
                 </a>
-                <dl class="layui-nav-child" style="height: fit-content">
+                </a>
+                <dl class="layui-nav-child"
+                    style="height: fit-content">
                     <dd><a href="javascript:;" name="borrow"
                            title="个人信息"
                            content="./personalInfo.jsp" id="4">个人信息
@@ -48,7 +47,7 @@
                     </a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="index.jsp">注销</a></li>
+            <li class="layui-nav-item"><a href="">退出</a></li>
         </ul>
     </div>
 
@@ -139,8 +138,7 @@
                 element.tabAdd("tabTemp", {
                     title: $(this).attr("title"),
                     content:
-                        "<iframe style='height: 100%;width: 100%' src='" +
-                        content + "' class='frame' frameborder='0'></iframe>",
+                        "<iframe style='height: 100%;width: 100%' src='" + content + "' class='frame' frameborder='0'></iframe>",
                     id: id
                 });
             }

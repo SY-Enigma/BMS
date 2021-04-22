@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class User {
+    private  String id;
     private String username;
     private  String password;
     private  String  reader;
@@ -23,8 +24,8 @@ public class User {
     private  String email;
     private  String describe;
 
-    public User(String username, String password, String reader, String header, String cellPhone, boolean sex,
-                String email, String describe) {
+    public User(String id,  String username, String password, String reader, String header, String cellPhone, boolean sex, String email, String describe) {
+       this.id = id;
         this.username = username;
         this.password = password;
         this.reader = reader;
@@ -39,5 +40,19 @@ public class User {
         this.username = username;
         this.password = password;
         this.reader = reader;
+    }
+    public User(String username, String nickname, String sex,
+                String cellphone,
+                String email, String remarks) {
+        this.username = username;
+        this.reader = nickname;
+        if ("男".equals(sex)) {
+            this.sex = true;
+        } else {
+            this.sex = false;
+        }
+        this.cellPhone = cellphone;
+        this.email = email;
+        this.describe = remarks;
     }
 }

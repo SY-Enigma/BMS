@@ -20,16 +20,18 @@ public class UserDao extends JDBCUtil {
 
     public  User selectOne(String username) {
         User user = null;
-        try (ResultSet resultSet =
-                     JDBCUtil.getInstance().executeQueryRS("select " +
+        try (ResultSet resultSet = JDBCUtil.getInstance().executeQueryRS("select " +
                                      "* " +
                                      "from " +
                                      "borrow_card where username=?",
                              new Object[]{username})) {
 
             while (resultSet.next()) {
-                user = new User(resultSet.getString("username"),
+                user = new User(
+
+                        resultSet.getString("username"),
                         resultSet.getString("password"),
+                        resultSet.getString("id"),
                         resultSet.getString("reader"),
                         resultSet.getString("header"),
                         resultSet.getString("cellPhone"),
@@ -55,7 +57,8 @@ public class UserDao extends JDBCUtil {
                              new Object[]{username})) {
 
             while (resultSet.next()) {
-                admin = new Admin(resultSet.getString("username"),
+                admin = new Admin(
+                        resultSet.getString("username"),
                         resultSet.getString("password"),
                         resultSet.getString("reader"),
                         resultSet.getString("header"),
@@ -93,6 +96,39 @@ public class UserDao extends JDBCUtil {
             ps.close();
 
 
+        }
+        return result;
+    }
+
+    public int updateOne(User user) {
+        int result = 0;
+        StringBuilder sb = new StringBuilder("update borrow_card " +
+                "set reader=?, cellphone=?, email=?, sex=?, " +
+                "borrow_card.`describe`=? ");
+        if (user.getHeader() != null) {
+            sb.append(", header=? where " +
+                    "username=?");
+            result =
+                    JDBCUtil.getInstance().executeUpdate(sb.toString(),
+                            new Object[]{
+
+                                    user.getReader(),
+                                    user.getCellPhone(),
+                                    user.getEmail(), user.isSex(),
+                                    user.getDescribe(),
+                                    user.getHeader(),
+                                    user.getUsername()});
+        } else {
+            sb.append("where username=?");
+            result =
+                    JDBCUtil.getInstance().executeUpdate(sb.toString(),
+                            new Object[]{
+
+                                    user.getReader(),
+                                    user.getCellPhone(),
+                                    user.getEmail(), user.isSex(),
+                                    user.getDescribe(),
+                                    user.getUsername()});
         }
         return result;
     }

@@ -58,4 +58,18 @@ public class UserService {
             return "注册成功";
         }
     }
+    public User getUserInfo(String username) {
+        return userDao.selectOne(username);
+    }
+
+    public String uploadUserInfo(User user, HttpSession session) {
+        int result = 0;
+        result = userDao.updateOne(user);
+        if (result > 0) {
+            User userInfo = getUserInfo(user.getUsername());
+            session.setAttribute("user", userInfo);
+            return "更新成功";
+        }
+        return "更新失败";
+    }
 }

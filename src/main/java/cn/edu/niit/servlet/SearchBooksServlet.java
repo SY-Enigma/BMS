@@ -43,8 +43,7 @@ public class SearchBooksServlet extends HttpServlet {
         if (param != null){
 
         }else {
-            books = booksService.searchAllBooks(pageNum,
-                    pageSize);
+            books = booksService.searchAllBooks(pageNum, pageSize);
         }
         count = booksService.countNum();
 
