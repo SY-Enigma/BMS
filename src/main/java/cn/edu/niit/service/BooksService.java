@@ -13,13 +13,18 @@ import java.util.List;
  **/
 public class BooksService {
     private BooksDao booksDao = new BooksDao();
+
+
     public List<Books> searchAllBooks(int pageNum, int pageSize){
         List<Books> books = booksDao.selectAll(pageNum, pageSize);
         return books;
     }
+
     public  int countNum(){
         return booksDao.selectAllCount();
     }
+
+
     public boolean isStore(String username, String bookId) {
         return booksDao.selectStore(username, bookId);
     }
@@ -32,4 +37,20 @@ public class BooksService {
             return "借阅失败";
         }
     }
+
+
+    public String addBook(String name,String author,String description){
+        int result = booksDao.addBooks(name,author,description);
+        if (result > 0){
+            return  "添加图书成功";
+        }else {
+            return "添加图书失败";
+        }
+    }
+
+    public int delBooks(String id){
+        return  booksDao.deleteBooks(id);
+
+    }
+
 }

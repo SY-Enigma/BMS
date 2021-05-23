@@ -104,7 +104,7 @@
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
-        © 软件工程专业
+        © 软件2076 2002932314 苏洋
     </div>
 </div>
 <script src="../layui/layui.js"></script>

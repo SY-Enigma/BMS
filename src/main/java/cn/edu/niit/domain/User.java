@@ -24,8 +24,9 @@ public class User {
     private  String email;
     private  String describe;
 
-    public User(String id,  String username, String password, String reader, String header, String cellPhone, boolean sex, String email, String describe) {
-       this.id = id;
+    public User(String id, String username, String password, String reader, String header, String cellPhone,
+                boolean sex, String email, String describe) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.reader = reader;
@@ -35,6 +36,7 @@ public class User {
         this.email = email;
         this.describe = describe;
     }
+
 
     public User(String username, String password, String reader) {
         this.username = username;

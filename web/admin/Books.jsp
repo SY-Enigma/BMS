@@ -36,7 +36,7 @@
 <body>
 <div>
     <button class="layui-btn" data-type="getCheckLength"
-            style="margin-left: 20px;">新增图书</button>
+            style="margin-left: 20px;" id="addBooks">新增图书</button>
 </div>
 <div class="layui-nav-item demoTable"
      style="display: flex;justify-content: flex-end;">
@@ -74,8 +74,8 @@
                 </td>
                 <td>
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">修改</a>
-                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">删除</a>
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" id="update">修改</a>
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" id="delete1">删除</a>
 
                 </td>
             </tr>
@@ -95,6 +95,22 @@
             var $ = layui.$;
             var count = 0, page = 1, limit = 5;
 
+            //添加图书绑定事件
+             $(addBooks).click(function () {
+                 layer.open({
+                     type: 2,
+                     title:'添加图书',
+                     content:'addBooks.jsp',
+                     area:['600px','500px']
+                     // end: function () {
+                     //     table.reload(addBook);
+                     // }
+                 });
+
+        })
+
+
+        //
             $(document).ready(function () {
                 //进入页面先加载数据
                 getContent(1, limit);

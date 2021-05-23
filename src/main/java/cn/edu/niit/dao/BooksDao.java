@@ -3,7 +3,7 @@ package cn.edu.niit.dao;
 import cn.edu.niit.db.JDBCUtil;
 import cn.edu.niit.domain.Books;
 
-import java.awt.print.Book;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,6 +17,12 @@ import java.util.List;
  * @Date 2021/4/13
  **/
 public class BooksDao {
+
+
+    /**
+     * 查询图书
+     * @return
+     */
     public List<Books> selectAll(int pageNum, int pageSize){
         String sql = "select books.*, book_sort.name as sort from " + "books, " + "book_sort where books.sort_id=book_sort.id limit " + "?,?";
         List<Books> books =new ArrayList<>();
@@ -37,7 +43,10 @@ public class BooksDao {
         }
         return books;
     }
-
+    /**
+     * 统计图书数量
+     * @return
+     */
     public int selectAllCount() {
         String sql = "select count(*) as num from books";
         try (final ResultSet rs = JDBCUtil.getInstance().executeQueryRS(sql, new Object[]{})) {
@@ -50,11 +59,16 @@ public class BooksDao {
         }
         return 0;
     }
+
+
+    /**
+     * 查询收藏图书
+     * @return
+     */
     public boolean selectStore(String username, String bookId) {
         String sql1 = "select EXISTS( SELECT 1 from borrow_books " +
                 "where book_id=? and card_id=?) as store";
-        try (ResultSet rs =
-                     JDBCUtil.getInstance().executeQueryRS(sql1,
+        try (ResultSet rs = JDBCUtil.getInstance().executeQueryRS(sql1,
                              new Object[]{
                                      bookId, username
                              });) {
@@ -70,15 +84,47 @@ public class BooksDao {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     public int insertStoreBook(String username, String bookId) {
-        String sql = "insert into borrow_books(book_id, card_id, " +
-                "borrow_date) values(?,?,?)";
-        int result = JDBCUtil.getInstance().executeUpdate(sql,
-                new Object[]{
+        String sql = "insert into borrow_books(book_id, card_id, " + "borrow_date) values(?,?,?)";
+        int result = JDBCUtil.getInstance().executeUpdate(sql, new Object[]{
                         bookId, username,
                         new Date(System.currentTimeMillis())
                 });
         return result;
     }
+
+
+
+
+
+
+    /**
+     *管理员添加图书
+     * @return
+     */
+   public int addBooks(String name,String author,String description){
+        String sql = "insert into books  values(?,?,?)";
+        int  result = JDBCUtil.getInstance().executeUpdate(sql, new Object[]{
+                name,author,description,new Date(System.currentTimeMillis())
+        });
+        return result;
+        }
+
+    /**
+     *管理员删除图书
+     * @return
+     */
+        public  int deleteBooks(String id){
+        String sql = "UPDATE books WHERE id= "+ id;
+            int result =JDBCUtil.getInstance().executeUpdate(sql, new Object[]{
+                    id,new Date(System.currentTimeMillis())
+            });
+            System.out.println("删除时的SQL："+sql);
+            return result;
+        }
 
 }
