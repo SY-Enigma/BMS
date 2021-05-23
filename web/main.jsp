@@ -31,8 +31,7 @@
                 <a href="javascript:;" id="info">
                     <img id="head" src="${sessionScope.user.header}"
                          class="layui-nav-img">
-                    <span
-                            id="reader">${sessionScope.user.reader}</span>
+                    <span  id="reader">${sessionScope.user.reader}</span>
                 </a>
                 </a>
                 <dl class="layui-nav-child"
@@ -47,7 +46,7 @@
                     </a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">退出</a></li>
+            <li class="layui-nav-item"><a href="index.jsp">注销</a></li>
         </ul>
     </div>
 
@@ -117,7 +116,7 @@
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
-        © 软件工程专业
+        © 软件2076 2002932314 苏洋
     </div>
 </div>
 <script src="./layui/layui.js"></script>

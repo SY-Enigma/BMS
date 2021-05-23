@@ -1,11 +1,8 @@
 package cn.edu.niit.domain;
-
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+
 
 /**
  * @ClassName Announcement
@@ -14,10 +11,18 @@ import java.util.Date;
  * @Date 2021/4/18
  **/
 @Data
-@AllArgsConstructor
+
 @NoArgsConstructor
 public class Announcement {
+    private  String id;
     private String title;
     private  String detail;
-    private Date publish_date;
+    private String publish_date;
+
+    public Announcement(String id, String title, String detail, String publish_date) {
+        this.id = id;
+        this.title = title;
+        this.detail = detail;
+        this.publish_date = publish_date;
+    }
 }

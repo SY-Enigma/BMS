@@ -19,8 +19,7 @@
 <body>
 
 <%@include file="alert.jsp" %>
-<jsp:useBean id="user" class="cn.edu.niit.domain.User"
-             scope="session"/>
+<jsp:useBean id="user" class="cn.edu.niit.domain.User" scope="session"/>
 
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">

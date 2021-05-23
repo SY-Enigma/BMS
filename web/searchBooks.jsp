@@ -63,8 +63,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="book" items="${sessionScope.books}"
-                   varStatus="status">
+        <c:forEach var="book" items="${sessionScope.books}" varStatus="status">
             <tr>
                 <td>${book.name}</td>
                 <td>${book.author}</td>
@@ -142,7 +141,7 @@
             $(document).on('click', '#borrow', function () {
                 //可以获取第一列的内容，也就是name的值
                 var name = $(this).parents("tr").find("td").eq(0).text();
-                //也可以获取属性中的值
+                //也可以获取属性中0的值
                 console.log($(this).attr("index"))
                 layer.msg(name)
             })

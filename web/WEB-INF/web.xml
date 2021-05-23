@@ -12,4 +12,22 @@
         <servlet-name>SearchBooksServlet</servlet-name>
         <url-pattern>/book/search</url-pattern>
     </servlet-mapping>
+
+
+<!--    评分，后期可删-->
+    <context-param>
+        <param-name>StudentID</param-name>
+        <param-value>2002932314</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>packageName</param-name>
+        <param-value>cn.edu.niit</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>cn.edu.niit.monitor.ApplicationListener</listener-class>
+    </listener>
+
 </web-app>
+
