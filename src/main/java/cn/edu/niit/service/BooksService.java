@@ -38,6 +38,14 @@ public class BooksService {
         }
     }
 
+    public  List<Books> selectBorrowBook(int pageNum, int pageSize,String id){
+        List<Books>  books = booksDao.selectBorrowBooks(pageNum, pageSize,id);
+        return  books;
+    }
+    public  int countBorrowNum( String userId){
+        return  booksDao.countBorrowBooks(userId);
+    }
+
 
     public String addBook(String name,String author,String description){
         int result = booksDao.addBooks(name,author,description);

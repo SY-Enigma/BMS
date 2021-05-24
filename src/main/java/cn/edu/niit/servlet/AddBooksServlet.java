@@ -21,14 +21,13 @@ public class AddBooksServlet extends HttpServlet {
     BooksService  booksService = new BooksService();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
+            IOException {
+        super.doGet(req, resp);
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
-            IOException {
-
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String name = req.getParameter("name");
         String author =  req.getParameter("author");
@@ -36,6 +35,6 @@ public class AddBooksServlet extends HttpServlet {
 
         String  message = booksService.addBook(name, author, description);
         resp.getWriter().print(message);
-
     }
+
 }

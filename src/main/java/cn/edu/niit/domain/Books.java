@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
  * @Author SY
  * @Date 2021/4/13
  **/
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Data
 
@@ -22,6 +22,14 @@ public class Books {
     private String description;
     private boolean store;
 
+    public Books(String id, String name, String author, String sort, String description, boolean store) {
+        this.id = id;
+        this.name = name;
+        this.author = author;
+        this.sort = sort;
+        this.description = description;
+        this.store = store;
+    }
 
     public Books(String id, String name, String author, String sort, String description) {
         this.id = id;
@@ -31,4 +39,10 @@ public class Books {
         this.description = description;
     }
 
+    public Books(String id, String name, String author, String description) {
+        this.id = id;
+        this.name = name;
+        this.author = author;
+        this.description = description;
+    }
 }

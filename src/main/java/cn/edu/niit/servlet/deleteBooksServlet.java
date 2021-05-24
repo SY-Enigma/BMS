@@ -21,16 +21,18 @@ public class deleteBooksServlet  extends HttpServlet {
     BooksService booksService = new BooksService();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
+            IOException {
+        super.doGet(req, resp);
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
-            IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
         String id = req.getParameter("id");
         int message = booksService.delBooks(id);
         resp.getWriter().print(message);
-
     }
+
+
 }

@@ -97,8 +97,50 @@ public class BooksDao {
         return result;
     }
 
+    /**
+     * 查询在借图书
+     * @return
+     */
+    public List<Books>  selectBorrowBooks(int pageNum, int pageSize ,String id){
+        String sql = "select books.author,books.name,books.description,borrow_card.id \n" +
+                "from books left join borrow_books on borrow_books.book_id = books.id \n" +
+                "left join borrow_card  on borrow_card.id = borrow_books.card_id where not isnull " +
+                "(borrow_card.id) and borrow_card.id = ? limit ?,? ";
 
+        List<Books> books =new ArrayList<>();
+        try( ResultSet rs = JDBCUtil.getInstance().executeQueryRS(sql,
+                new Object[]{id,(pageNum - 1) * pageSize, pageSize})) {
+            while (rs.next()){
+                Books book = new Books(
+                        rs.getString("id"),
+                        rs.getString("name"),
+                        rs.getString("author"),
+                        rs.getString("description")
+                        );
+                books.add(book);
 
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return books;
+    }
+
+    public  int countBorrowBooks(String userId){
+        String sql ="select count(*) as borrowNum  FROM borrow_books where card_id = ?";
+        try (ResultSet rs = JDBCUtil.getInstance().executeQueryRS(sql, new Object[]{userId})) {
+            while (rs.next()) {
+                return rs.getInt("borrowNum");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+
+        return 0;
+
+    }
 
 
 
@@ -119,7 +161,7 @@ public class BooksDao {
      * @return
      */
         public  int deleteBooks(String id){
-        String sql = "UPDATE books WHERE id= "+ id;
+        String sql = "UPDATE books WHERE id=?";
             int result =JDBCUtil.getInstance().executeUpdate(sql, new Object[]{
                     id,new Date(System.currentTimeMillis())
             });

@@ -120,11 +120,8 @@
                                     <div class="layui-form-item layui-form-text">
                                         <label class="layui-form-label">备注</label>
                                         <div class="layui-input-block">
-										<textarea name="remarks"
-                                                  placeholder="请输入内容"
-                                                  class="layui-textarea"><jsp:getProperty
-                                                name="user"
-                                                property="describe"/>
+										<textarea name="remarks" placeholder="请输入内容" class="layui-textarea">
+                                            <jsp:getProperty name="user" property="describe"/>
 										</textarea>
                                         </div>
                                     </div>

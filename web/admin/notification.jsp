@@ -59,7 +59,7 @@
                 </td>
                 <td >${announcement.publish_date}</td>
                 <td>
-                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" >查看</a>
                     <a class="layui-btn layui-btn-xs" lay-event="update">修改</a>
                 </td>
             </tr>
