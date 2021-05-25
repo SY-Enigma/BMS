@@ -24,7 +24,8 @@ public class BooksDao {
      * @return
      */
     public List<Books> selectAll(int pageNum, int pageSize){
-        String sql = "select books.*, book_sort.name as sort from " + "books, " + "book_sort where books.sort_id=book_sort.id limit " + "?,?";
+        String sql = "select books.*, book_sort.name as sort from books, book_sort where books" +
+                ".sort_id=book_sort.id limit ?,?";
         List<Books> books =new ArrayList<>();
         try(ResultSet rs = JDBCUtil.getInstance().executeQueryRS(sql,
                 new Object[]{(pageNum - 1) * pageSize, pageSize})) {

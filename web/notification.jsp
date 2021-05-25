@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 17974
@@ -103,7 +104,7 @@
             function getContent(page, size) {
                 $.ajax({
                     type: 'POST',
-                    url: "/notification",
+                    url: "/search/notification",
                     async: false, //开启同步请求，为了保证先得到count再渲染表格
                     data: JSON.stringify({
                         pageNum: page,

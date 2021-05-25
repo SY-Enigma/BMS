@@ -15,19 +15,21 @@ import java.util.List;
  * @Date 2021/4/18
  **/
 public class AnnouncementDao {
-    public  List<Announcement> selectAll( int pageSize,int pageNum,String title ) {
-        List<Announcement> announcements = new ArrayList<>();
+    public  List<Announcement> selectAll(int pageNum, int pageSize ) {
 
-       try ( ResultSet resultSet = (ResultSet) JDBCUtil.getInstance().excuteQuery("select * from announcement  ",
-               new Object[]{title,(pageNum - 1) * pageSize, pageSize})){
-           while (resultSet.next()){
+        String sql = "select * from announcement limit ?,?";
+        List<Announcement> announcements = new ArrayList<>();
+        try(ResultSet rs = JDBCUtil.getInstance().executeQueryRS(sql,
+                new Object[]{(pageNum - 1) * pageSize, pageSize})){
+           while (rs.next()){
                Announcement  announcement = new Announcement(
-                       resultSet.getString("id"),
-                       resultSet.getString("title"),
-                       resultSet.getString("detail"),
-                       resultSet.getString("publish_date"));
+                       rs.getString("id"),
+                       rs.getString("title"),
+                       rs.getString("detail"),
+                       rs.getString("publish_date"));
 
                announcements.add(announcement);
+               System.out.println(announcements);
            }
 
        } catch (SQLException e) {
@@ -36,11 +38,13 @@ public class AnnouncementDao {
 
         return announcements;
     }
-  public  int countAnnouncement(String annId){
-        String sql = "select count(*) as countNum from announcement where id ";
-        try (ResultSet rs = JDBCUtil.getInstance().executeQueryRS(sql, new Object[]{annId})){
+  public  int countAnnouncement(){
+        String sql = "select count(*) as countNum from announcement  ";
+        try (ResultSet rs = JDBCUtil.getInstance().executeQueryRS(sql, new Object[]{})){
             while (rs.next()){
                 int count  = rs.getInt("countNum");
+                System.out.println("********************\n");
+                System.out.println(count);
                 return count;
             }
         }catch (SQLException e){

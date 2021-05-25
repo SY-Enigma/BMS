@@ -1,6 +1,9 @@
 package cn.edu.niit.service;
 
 import cn.edu.niit.dao.AnnouncementDao;
+import cn.edu.niit.domain.Announcement;
+
+import java.util.List;
 
 
 /**
@@ -11,9 +14,17 @@ import cn.edu.niit.dao.AnnouncementDao;
  **/
 public class AnnouncementService {
   private  AnnouncementDao announcementDao = new AnnouncementDao();
-    public int Announcement1(String annId){
 
-      return announcementDao.countAnnouncement(annId);
+   public  List<Announcement> searchAllAnnouncement(int pageNum, int pageSize){
+     List<Announcement> announcements = announcementDao.selectAll(pageNum, pageSize);
+     return announcements;
+
+   }
+    public int searchAnnouncement(){
+
+      return announcementDao.countAnnouncement();
 
     }
+
+
 }

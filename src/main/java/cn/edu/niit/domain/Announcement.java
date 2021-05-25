@@ -25,4 +25,6 @@ public class Announcement {
         this.detail = detail;
         this.publish_date = publish_date;
     }
+
+
 }

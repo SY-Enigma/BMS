@@ -12,10 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,7 +25,7 @@ import java.util.List;
  * @Date 2021/4/18
  **/
 
-@WebServlet(name = "AnnouncementServlet" , urlPatterns = "/notification")
+@WebServlet(name = "AnnouncementServlet" , urlPatterns = "/search/notification")
 public class AnnouncementServlet extends HttpServlet {
 
     private AnnouncementDao announcementDao = new AnnouncementDao();
@@ -40,27 +39,27 @@ public class AnnouncementServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         String paramJson = IOUtils.toString(req.getInputStream(), "UTF-8");
         HashMap<String, Object> parseObject = JSON.parseObject(paramJson, HashMap.class);
         String param = (String) parseObject.get("search");
-        //
-        HttpSession session = req.getSession();
-        Announcement announcement = (Announcement) session.getAttribute("announcement");
-        String annId = announcement.getId();
 
-        int pageNUm = (int) parseObject.get("pageNum");
+        int pageNum = (int) parseObject.get("pageNum");
         int pageSize = (int) parseObject.get("pageSize");
+
         List<Announcement> announcements = new ArrayList<>();
         int count = 0;
-        String annTitle = announcement.getTitle();
 
         if (param != null){
             //带参数查询
+
         }else {
-            announcements = announcementDao.selectAll(pageSize,pageNUm,annTitle);
+            announcements = announcementService.searchAllAnnouncement(pageNum, pageSize);
         }
-        count = announcementService.Announcement1(annId);
+        count = announcementService.searchAnnouncement();
+        //将结果放入session
         req.getSession().setAttribute("announcements",announcements);
+        //将count直接作为ajax请求的结果返回
         resp.getWriter().print(count);
     }
 

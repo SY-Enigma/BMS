@@ -1,5 +1,6 @@
 package cn.edu.niit.servlet;
 
+import cn.edu.niit.dao.BooksDao;
 import cn.edu.niit.domain.Books;
 import cn.edu.niit.domain.User;
 import cn.edu.niit.service.BooksService;
@@ -25,6 +26,7 @@ import java.util.List;
  **/
 @WebServlet(name = "SearchBorrowBooks", urlPatterns = "/borrowBooks")
 public class SearchBorrowBooks extends HttpServlet {
+    BooksDao booksDao = new BooksDao();
     BooksService booksService = new BooksService();
 
     @Override
@@ -53,7 +55,7 @@ public class SearchBorrowBooks extends HttpServlet {
         if (param != null){
 
         }else {
-            books = booksService.selectBorrowBook(pageNum, pageSize,userId);
+            books = booksDao.selectBorrowBooks(pageNum, pageSize, userId);
         }
         count = booksService.countBorrowNum(userId);
 
