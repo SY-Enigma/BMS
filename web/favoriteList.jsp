@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 17974
@@ -44,10 +45,11 @@
 <div class="layui-form" id="content">
     <table class="layui-table" style="table-layout:fixed">
         <colgroup>
-            <col width="200">
-            <col width="200">
-            <col width="200">
-            <col width="300">
+            <col width="150">
+            <col width="150">
+            <col width="150">
+            <col width="150">
+            <col width="180">
 
         </colgroup>
         <thead>
@@ -55,21 +57,24 @@
             <th>书名</th>
             <th>作者</th>
             <th>描述</th>
-            <th>借书时间状况</th>
+            <th>操作</th>
 
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="borrowBooks" items="${sessionScope.borrowBooks}" varStatus="status">
+        <c:forEach var="storeBooks" items="${sessionScope.storeBooks}" varStatus="status">
 
             <tr>
-                <td>${borrowBooks.name}</td>
-                <td>${borrowBooks.author}</td>
+                <td>${storeBooks.name}</td>
+                <td>${storeBooks.author}</td>
                 <td class="wrap-td">
-                    <div class="wrap-div">${borrowBooks.description}</div>
+                    <div class="wrap-div">${storeBooks.description}</div>
                 </td>
-                <td >${borrowBooks.stor}</td>
 
+                <td>
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">取消收藏</a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
@@ -115,7 +120,7 @@
             function getContent(page, size) {
                 $.ajax({
                     type: 'POST',
-                    url: "",
+                    url: "/storeBooks",
                     async: false, //开启同步请求，为了保证先得到count再渲染表格
                     data: JSON.stringify({
                         pageNum: page,

@@ -29,7 +29,7 @@ public class AnnouncementDao {
                        rs.getString("publish_date"));
 
                announcements.add(announcement);
-               System.out.println(announcements);
+
            }
 
        } catch (SQLException e) {
@@ -43,8 +43,7 @@ public class AnnouncementDao {
         try (ResultSet rs = JDBCUtil.getInstance().executeQueryRS(sql, new Object[]{})){
             while (rs.next()){
                 int count  = rs.getInt("countNum");
-                System.out.println("********************\n");
-                System.out.println(count);
+
                 return count;
             }
         }catch (SQLException e){

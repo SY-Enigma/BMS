@@ -68,20 +68,26 @@
                                content="./personalInfo.jsp" id="3">
                             个人信息</a></dd>
                         <dd><a href="javascript:;" name="borrow"
-                               title="用户管理"
+                               title="管理员用户管理"
                                content="./Users.jsp" id="4">
-                            用户管理</a></dd>
+                            管理员用户管理</a></dd>
+
+                        <dd><a href="javascript:;" name="borrow"
+                               title="普通用户管理"
+                               content="./Users.jsp" id="5">
+                            普通用户管理</a></dd>
+
                     </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;" name="borrow"
                        title="留言板"
-                       content="./messageBoard.jsp" id="5">留言板</a>
+                       content="./messageBoard.jsp" id="6">留言板</a>
                 </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;" name="borrow"
                        title="通知中心"
-                       content="./notification.jsp" id="6">通知中心</a>
+                       content="./notification.jsp" id="7">通知中心</a>
                 </li>
             </ul>
         </div>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 17974
@@ -47,6 +48,8 @@
             <col width="150">
             <col width="150">
             <col width="150">
+            <col width="150">
+            <col width="150">
             <col width="200">
             <col>
             <col width="180">
@@ -56,23 +59,27 @@
             <th>书名</th>
             <th>作者</th>
             <th>描述</th>
-            <th>借书时间状况</th>
+            <th>借书时间</th>
+            <th>归还时间</th>
+            <th>归还情况</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="borrowBooks" items="${sessionScope.borrowBooks}" varStatus="status">
+        <c:forEach var="borrowHistoryBooks" items="${sessionScope.historyBooks}" varStatus="status">
 
             <tr>
-                <td>${borrowBooks.name}</td>
-                <td>${borrowBooks.author}</td>
+                <td>${borrowHistoryBooks.name}</td>
+                <td>${borrowHistoryBooks.author}</td>
                 <td class="wrap-td">
-                    <div class="wrap-div">${borrowBooks.description}</div>
+                    <div class="wrap-div">${borrowHistoryBooks.description}</div>
                 </td>
-                <td >${borrowBooks.name}</td>
+                <td >${borrowHistoryBooks.borrow_date}</td>
+                <td >${borrowHistoryBooks.return_date}</td>
+                <td >${borrowHistoryBooks.illegal}</td>
                 <td>
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-                    <a class="layui-btn layui-btn-xs" lay-event="edit">退还</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">删除</a>
                 </td>
             </tr>
         </c:forEach>
@@ -119,7 +126,7 @@
             function getContent(page, size) {
                 $.ajax({
                     type: 'POST',
-                    url: "",
+                    url: "/borrowHistoryBooks",
                     async: false, //开启同步请求，为了保证先得到count再渲染表格
                     data: JSON.stringify({
                         pageNum: page,

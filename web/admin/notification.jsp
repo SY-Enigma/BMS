@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 17974
@@ -59,8 +60,9 @@
                 </td>
                 <td >${announcement.publish_date}</td>
                 <td>
-                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" >查看</a>
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="del" >删除</a>
                     <a class="layui-btn layui-btn-xs" lay-event="update">修改</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="add">增加</a>
                 </td>
             </tr>
         </c:forEach>
@@ -107,7 +109,7 @@
             function getContent(page, size) {
                 $.ajax({
                     type: 'POST',
-                    url: "/notification",
+                    url: "/search/notification",
                     async: false, //开启同步请求，为了保证先得到count再渲染表格
                     data: JSON.stringify({
                         pageNum: page,

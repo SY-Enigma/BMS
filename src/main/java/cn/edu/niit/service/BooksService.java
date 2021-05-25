@@ -14,16 +14,31 @@ import java.util.List;
 public class BooksService {
     private BooksDao booksDao = new BooksDao();
 
-
+    /**
+     * 查询图书
+     * @return
+     */
     public List<Books> searchAllBooks(int pageNum, int pageSize){
         List<Books> books = booksDao.selectAll(pageNum, pageSize);
         return books;
     }
 
+
     public  int countNum(){
         return booksDao.selectAllCount();
     }
 
+    /**
+     * 查询收藏图书
+     * @return
+     */
+    public  List<Books> selectStoreBooks(int pageNum, int pageSize,String id){
+        List<Books> books = booksDao.selectAllStore(pageNum, pageSize,id);
+        return books;
+    }
+    public  int countStoreNum(String userId){
+        return  booksDao.countStore(userId);
+    }
 
     public boolean isStore(String username, String bookId) {
         return booksDao.selectStore(username, bookId);
@@ -37,7 +52,10 @@ public class BooksService {
             return "借阅失败";
         }
     }
-
+    /**
+     * 再借图书
+     * @return
+     */
     public  List<Books> selectBorrowBook(int pageNum, int pageSize,String id){
         List<Books>  books = booksDao.selectBorrowBooks(pageNum, pageSize,id);
         return  books;
@@ -47,6 +65,24 @@ public class BooksService {
     }
 
 
+    /**
+     * 借阅图书历史
+     *
+     * @return
+     */
+    public  List<Books> selectBorrowHistoryBooks(int pageNum, int pageSize,String id){
+        List<Books> books = booksDao.selectBorrowHistoryBooks(pageNum, pageSize,id);
+        return books;
+    }
+    public  int countBorrowHistoryNum(String userId){
+        return  booksDao.countBorrowHistoryBooks(userId);
+    }
+
+
+    /**
+     * 增加图书
+     * @return
+     */
     public String addBook(String name,String author,String description){
         int result = booksDao.addBooks(name,author,description);
         if (result > 0){
@@ -55,7 +91,10 @@ public class BooksService {
             return "添加图书失败";
         }
     }
-
+    /**
+     * 删除图书
+     * @return
+     */
     public int delBooks(String id){
         return  booksDao.deleteBooks(id);
 

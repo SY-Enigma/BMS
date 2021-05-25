@@ -44,6 +44,8 @@ public class BooksDao {
         }
         return books;
     }
+
+
     /**
      * 统计图书数量
      * @return
@@ -62,10 +64,53 @@ public class BooksDao {
     }
 
 
+
+
     /**
      * 查询收藏图书
      * @return
      */
+    public List<Books> selectAllStore(int pageNum, int pageSize,String id){
+        String sql = "select books.author,books.name,books.description,borrow_card.id\n" +
+                "from books left join borrow_books on borrow_books.book_id = books.id left join borrow_card" +
+                "  on borrow_card.id = borrow_books.card_id where not isnull (borrow_card.id) and " +
+                "borrow_card.id = ? limit ?,?";
+        List<Books> books =new ArrayList<>();
+        try(ResultSet rs = JDBCUtil.getInstance().executeQueryRS(sql,
+                new Object[]{id,(pageNum - 1) * pageSize, pageSize})) {
+            while (rs.next()){
+                Books book = new Books(
+                        rs.getString("id"),
+                        rs.getString("name"),
+                        rs.getString("author"),
+                        rs.getString("description")
+
+                        );
+                books.add(book);
+                System.out.println(books);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return books;
+    }
+
+    public  int countStore(String userId){
+        String sql ="select count(*) as storeNum  FROM borrow_books where card_id = ?";
+        try (ResultSet rs = JDBCUtil.getInstance().executeQueryRS(sql, new Object[]{userId})) {
+            while (rs.next()) {
+                return rs.getInt("storeNum");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+
+        return 0;
+
+    }
+
     public boolean selectStore(String username, String bookId) {
         String sql1 = "select EXISTS( SELECT 1 from borrow_books " +
                 "where book_id=? and card_id=?) as store";
@@ -75,6 +120,7 @@ public class BooksDao {
                              });) {
 
             while (rs.next()) {
+
                 return rs.getBoolean("store");
             }
 
@@ -87,7 +133,7 @@ public class BooksDao {
 
     /**
      *
-     * @return
+     * @return 增加图书收藏
      */
     public int insertStoreBook(String username, String bookId) {
         String sql = "insert into borrow_books(book_id, card_id, " + "borrow_date) values(?,?,?)";
@@ -127,7 +173,10 @@ public class BooksDao {
         }
         return books;
     }
-
+    /**
+     * 统计在借图书数量
+     * @return
+     */
     public  int countBorrowBooks(String userId){
         String sql ="select count(*) as borrowNum  FROM borrow_books where card_id = ?";
         try (ResultSet rs = JDBCUtil.getInstance().executeQueryRS(sql, new Object[]{userId})) {
@@ -142,8 +191,57 @@ public class BooksDao {
         return 0;
 
     }
+    /**
+     * 查看借阅图书历史
+     * @return
+     */
+    public List<Books>  selectBorrowHistoryBooks(int pageNum, int pageSize ,String id) {
+        String sql ="select books.author,books.name,books.description,borrow_card.id,borrow_books.illegal," +
+                "borrow_books.borrow_date,borrow_books.return_date\n" +
+                "from books left join borrow_books on borrow_books.book_id = books.id\n" +
+                "left join borrow_card  on borrow_card.id = borrow_books.card_id where not isnull \n" +
+                "(borrow_card.id) and borrow_card.id =? limit ?,?";
 
+        List<Books> books =new ArrayList<>();
+        try( ResultSet rs = JDBCUtil.getInstance().executeQueryRS(sql, new Object[]{id,(pageNum - 1) * pageSize, pageSize})) {
+            while (rs.next()){
+                Books book = new Books(
+                        rs.getString("id"),
+                        rs.getString("name"),
+                        rs.getString("author"),
+                        rs.getString("description"),
+                        rs.getString("illegal"),
+                        rs.getString("borrow_date"),
+                        rs.getString("return_date")
+                );
+                books.add(book);
 
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return books;
+    }
+
+        /**
+         * 统计借阅历史图书数量
+         * @return
+         */
+        public  int countBorrowHistoryBooks(String userId){
+            String sql ="select count(*) as borrowHistoryNum  FROM borrow_books where card_id = ?";
+            try (ResultSet rs = JDBCUtil.getInstance().executeQueryRS(sql, new Object[]{userId})) {
+                while (rs.next()) {
+                    return rs.getInt("borrowHistoryNum");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return 0;
+            }
+
+            return 0;
+
+        }
 
     /**
      *管理员添加图书
