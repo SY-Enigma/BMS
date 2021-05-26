@@ -27,7 +27,7 @@ public class MessageDao {
                  rs.getString("public_date"));
 
                 messages.add(message);
-                System.out.println(messages);
+
             }
         }catch (SQLException e){
             e.printStackTrace();

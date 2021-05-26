@@ -69,7 +69,7 @@
                             个人信息</a></dd>
                         <dd><a href="javascript:;" name="borrow"
                                title="管理员用户管理"
-                               content="./Users.jsp" id="4">
+                               content="./Manager.jsp" id="4">
                             管理员用户管理</a></dd>
 
                         <dd><a href="javascript:;" name="borrow"

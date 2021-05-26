@@ -6,6 +6,7 @@ import cn.edu.niit.domain.User;
 
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @ClassName UserService
@@ -32,7 +33,14 @@ public class UserService {
         }
     }
 
+    public List<User> searchUser(int pageNum, int pageSize){
+        List<User> users = userDao.selectUser(pageNum, pageSize);
+        return  users;
+    }
 
+    public  int searchCountUser(){
+        return userDao.countUser();
+    }
 
 
     public String adminLogin(String username, String password, HttpSession session) {

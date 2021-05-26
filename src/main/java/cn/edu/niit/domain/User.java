@@ -57,4 +57,20 @@ public class User {
         this.email = email;
         this.describe = remarks;
     }
+
+    public User(String id, String username, String reader, String header, String cellPhone, boolean sex,
+                String email, String describe) {
+        this.id = id;
+        this.username = username;
+        this.reader = reader;
+        this.header = header;
+        this.cellPhone = cellPhone;
+        if ("男".equals(sex)) {
+            this.sex = true;
+        } else {
+            this.sex = false;
+        }
+        this.email = email;
+        this.describe = describe;
+    }
 }

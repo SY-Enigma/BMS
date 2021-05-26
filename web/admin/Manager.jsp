@@ -2,49 +2,75 @@
 <%--
   Created by IntelliJ IDEA.
   User: 17974
-  Date: 2021/4/20
-  Time: 8:14
+  Date: 2021/5/26
+  Time: 13:49
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>留言板</title>
-    <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+    <title>查询管理员</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <style>
+        .wrap-div {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+            float: left;
+            width: 100%;
+            word-break: break-all;
+            text-overflow: ellipsis;
+        }
+    </style>
 </head>
 <body>
+<div>
+    <button class="layui-btn" data-type="getCheckLength"
+            style="margin-left: 20px;" id="addUsers">增加用户</button>
+</div>
+<div class="layui-nav-item demoTable"
+     style="display: flex;justify-content: flex-end;">
+    <input type="text" class="layui-input"
+           style="padding: 0;display: inline;width: 300px;"
+           placeholder="请输入搜索信息..."/>
+    <button class="layui-btn" data-type="getCheckLength" style="margin-left: 20px;">搜索</button>
+</div>
 <div class="layui-form" id="content">
     <table class="layui-table" style="table-layout:fixed">
         <colgroup>
             <col width="150">
-            <col width="250">
-            <col width="200">
-            <col>
-            <col width="200">
+            <col width="150">
+            <col width="150">
+            <col width="180">
         </colgroup>
         <thead>
         <tr>
             <th>用户名</th>
-            <th>留言内容</th>
-            <th>时间</th>
+            <th>昵称</th>
+            <th>邮箱</th>
+            <th>密码</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="message" items="${sessionScope.messages}" varStatus="status">
-
+        <c:forEach var="managers" items="${sessionScope.managers}" varStatus="status">
             <tr>
-
-                <td>${message.cardId}</td>
-                <td>${message.detail}</td>
+                <td>${managers.account}</td>
+                <td>${managers.name}</td>
+                <td>${managers.email}</td>
                 <td class="wrap-td">
-                    <div class="wrap-div">${message.publicDate}</div>
+                    <div class="wrap-div">${managers.password}</div>
                 </td>
                 <td>
-                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="update">修改</a>
-                    <a class="layui-btn layui-btn-xs" lay-event="del">删除</a>
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" id="update">修改</a>
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" id="delete1">删除</a>
 
                 </td>
             </tr>
@@ -56,17 +82,30 @@
 <div id="page" style="display: flex;justify-content: center;"  ></div>
 
 <script src="/layui/layui.js" charset="UTF-8"></script>
-<script src = "K/layui/lay/modules/jquery.js"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
 <script>
     layui.use(['laypage', 'layer'], function () {
-
             var laypage = layui.laypage
                 , layer = layui.layer;
             var $ = layui.$;
-
             var count = 0, page = 1, limit = 5;
 
+            // //添加图书绑定事件
+            // $(addUser).click(function () {
+            //     layer.open({
+            //         type: 2,
+            //         title:'添加用户',
+            //         content:'addBooks.jsp',
+            //         area:['600px','500px']
+            //         // end: function () {
+            //         //     table.reload(addBook);
+            //         // }
+            //     });
+            //
+            // })
+
+
+            //
             $(document).ready(function () {
                 //进入页面先加载数据
                 getContent(1, limit);
@@ -94,7 +133,7 @@
             function getContent(page, size) {
                 $.ajax({
                     type: 'POST',
-                    url: "/search/message",
+                    url: "/search/manager",
                     async: false, //开启同步请求，为了保证先得到count再渲染表格
                     data: JSON.stringify({
                         pageNum: page,
@@ -113,4 +152,5 @@
 </script>
 
 </body>
+
 </html>
