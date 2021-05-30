@@ -92,7 +92,7 @@
 
             // //添加图书绑定事件
             // $(addUser).click(function () {
-            //     layer.open({
+            //     layer.open({ le.
             //         type: 2,
             //         title:'添加用户',
             //         content:'addBooks.jsp',
